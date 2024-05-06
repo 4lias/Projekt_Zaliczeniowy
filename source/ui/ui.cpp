@@ -1,24 +1,5 @@
 #include <SFML/Graphics.hpp>
 
-class UI {
-public:
-    void displayLevel(int level) {
-        // implementacja
-    }
-
-    void displayPoints(int points) {
-        // implementacja
-    }
-
-    void displayBoard() {
-        // implementacja
-    }
-
-    void displaySnake() {
-        // implementacja
-    }
-};
-
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Window");
 

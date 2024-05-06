@@ -1,20 +1,20 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "ui.h"
-#include "board.h"
-#include "snake.h"
+#include "../ui/ui.h"
+#include "../board/board.h"
+#include "../snake/snake.h"
 
 class Controller {
 private:
-    ui ui;
+    UI ui;
     Board board;
     Snake snake;
 
 public:
     bool generateBoard(Board board);
     bool moveSnake(Board board, Snake snake);
-    bool launch();
+    int launch();
 };
 
 #endif // CONTROLLER_H
