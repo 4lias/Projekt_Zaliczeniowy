@@ -1,0 +1,3 @@
+/home/alias/Documents/GitHub/Projekt_Zaliczeniowy/_deps/sfml-subbuild/CMakeFiles/sfml-populate.dir
+/home/alias/Documents/GitHub/Projekt_Zaliczeniowy/_deps/sfml-subbuild/CMakeFiles/edit_cache.dir
+/home/alias/Documents/GitHub/Projekt_Zaliczeniowy/_deps/sfml-subbuild/CMakeFiles/rebuild_cache.dir
