@@ -230,4 +230,6 @@ CMakeFiles/snek.dir/src/ui/ui.cpp.o: \
  /home/alias/Documents/GitHub/Projekt_Zaliczeniowy/build/_deps/sfml-src/include/SFML/Graphics/Sprite.hpp \
  /home/alias/Documents/GitHub/Projekt_Zaliczeniowy/build/_deps/sfml-src/include/SFML/Graphics/Text.hpp \
  /home/alias/Documents/GitHub/Projekt_Zaliczeniowy/build/_deps/sfml-src/include/SFML/Graphics/VertexBuffer.hpp \
- /home/alias/Documents/GitHub/Projekt_Zaliczeniowy/src/ui/ui.h
+ /home/alias/Documents/GitHub/Projekt_Zaliczeniowy/src/ui/ui.h \
+ /usr/include/c++/14/iostream /usr/include/c++/14/istream \
+ /usr/include/c++/14/bits/istream.tcc
