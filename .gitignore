@@ -2,6 +2,7 @@
 /_deps
 /build
 /CMakeFiles
+/bin
 Makefile
 *.cmake
 *.json
