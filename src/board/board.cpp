@@ -1,5 +1,7 @@
 #include "board.h"
 
+
+
 int* Board::getDimensions() {
     // implementacja
 }
