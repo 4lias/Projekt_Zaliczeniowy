@@ -18,7 +18,7 @@ float sinInOutEase(float time)
     return sinf(time)*0.5f + 0.5f;
 }
 
-void UI::displayHelloWorld()
+void UI::displayGame()
 {
     float speed = 0.5f;
     int screenDimensions[] = {1920, 1080};
@@ -32,36 +32,37 @@ void UI::displayHelloWorld()
     sf::Texture tex;
 
     std::vector<sf::RectangleShape> rec(recAmount);
-    int posX = screenDimensions[0]*0.5f, posY = screenDimensions[1]*0.5f, a=1;
+    int posX = screenDimensions[0]*0.5f, posY = screenDimensions[1]*0.5f, a=0;
     rec[0].setPosition(posX, posY);
+    rec[0].setSize(sf::Vector2f(200, 200));
+    rec[0].setFillColor(sf::Color(0,0,0,0));
+    rec[0].setOrigin(100, 100);
+            
     for(int n=0; n<=11; n++)
     {
         int modN = n%2;
+        int j = n - modN;
 
         int dirX = round(cos(M_PI*0.5f*n));
         int dirY = round(sin(M_PI*0.5f*n));
     
-        rec[n].setSize(sf::Vector2f(200, 200));
-        rec[n].setFillColor(sf::Color(0,0,0,0));
-        rec[n].setOrigin(100, 100);
-
         for(int i=0; i<=n; i++)
         {
+            a++;
             posX = posX + dirX*200;
             posY = posY + dirY*200;
-            rec[a].setPosition(posX, posY);
-            a++;
 
-            //std::cout <<a<<std::endl;
+            rec[a].setSize(sf::Vector2f(200, 200));
+            rec[a].setFillColor(sf::Color(0,0,0,0));
+            rec[a].setOrigin(100, 100);
+            rec[a].setPosition(posX, posY);
         }
-        //std::cout << dirX <<";"<< dirY << std::endl;
-        //n+=modN;
     }
     
     if(!font.loadFromFile("../../assets/fonts/HelpMe.ttf")){}
     if(!font2.loadFromFile("../../assets/fonts/IHATCS__.TTF")){}
     if(!tex.loadFromFile("../../assets/sprites/tf.png")){}
-    //chuj  
+
     sf::Text text;
     text.setFont(font);
     text.setString("Snek");
@@ -76,7 +77,7 @@ void UI::displayHelloWorld()
     text2.setCharacterSize(100);
     text2.setFillColor(sf::Color::Black);
     text2.setOrigin(text2.getLocalBounds().width*0.5f,text2.getLocalBounds().height*0.5f);
-    text2.setPosition(screenDimensions[0]*0.5f,screenDimensions[1]*0.5f+200); //chuj
+    text2.setPosition(screenDimensions[0]*0.5f,screenDimensions[1]*0.5f+200);
 
     sf::Sprite sprite;
     sprite.setTexture(tex);
@@ -91,7 +92,7 @@ void UI::displayHelloWorld()
                 window.close();
         }
 
-        window.clear(sf::Color(81, 186, 28)); // Wyczyszczenie okna na biało
+        window.clear(sf::Color(81, 186, 28)); // Wyczyszczenie okna na zielono
 
         // Tutaj można dodać kod rysowania dodatkowych elementów
         
@@ -113,7 +114,7 @@ void UI::displayHelloWorld()
         text2.setFillColor(sf::Color(0,0,0,255*sinInOutEase(time*3)));
 
         for(int i=0; i<recAmount; i++){
-                    rec[i].setFillColor(sf::Color(0,0,0,100*expOutEase(time,1.f*i)));
+                    rec[i].setFillColor(sf::Color(0,0,0,255*expOutEase(time,0.02f*i)));
                 }
 
         if(event.type == sf::Event::KeyPressed)

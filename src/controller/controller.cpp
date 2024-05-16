@@ -10,5 +10,5 @@ bool Controller::moveSnake(Board board, Snake snake) {
 }
 
 int Controller::launch() {
-    ui.displayHelloWorld();
+    ui.displayGame();
 }

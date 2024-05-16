@@ -4,7 +4,7 @@
 class UI {
 public:
 
-    void displayHelloWorld();
+    void displayGame();
 
     void displayLevel(int level);
 
