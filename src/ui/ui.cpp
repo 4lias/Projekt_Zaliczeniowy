@@ -23,6 +23,7 @@ void UI::displayGame()
     float speed = 0.5f;
     int screenDimensions[] = {1920, 1080};
     int recAmount = 122;
+    bool isTriggered = false;
 
     sf::RenderWindow window(sf::VideoMode(screenDimensions[0], screenDimensions[1]), "Snek", sf::Style::Default);
     sf::Clock clock;
@@ -96,9 +97,9 @@ void UI::displayGame()
 
         // Tutaj można dodać kod rysowania dodatkowych elementów
         
-        //window.draw(text);
-        //window.draw(sprite);
-        //window.draw(text2);
+        window.draw(text);
+        window.draw(sprite);
+        window.draw(text2);
         for(int i=0;i<recAmount;i++)
             window.draw(rec[i]);
 
@@ -113,22 +114,22 @@ void UI::displayGame()
 
         text2.setFillColor(sf::Color(0,0,0,255*sinInOutEase(time*3)));
 
-        for(int i=0; i<recAmount; i++){
-                    rec[i].setFillColor(sf::Color(0,0,0,255*expOutEase(time,0.02f*i)));
-                }
-
         if(event.type == sf::Event::KeyPressed)
         {
-            if(event.key.scancode == sf::Keyboard::Scan::Enter)
-            {
+            if(event.key.scancode == sf::Keyboard::Scan::Enter){
                 clock2.restart();
-                sf::Time timer2 = clock2.getElapsedTime();
-                float time2 = timer.asSeconds();
-                /*for(int i=0; i<recAmount; i++){
-                    rec[i].setFillColor(sf::Color(0,0,0,255*expOutEase(time2*0.1f,0.5f*i)));
-                }*/
+                isTriggered = true;
             }
-            
         }
+
+        // transition animation
+        if(isTriggered == true){
+            sf::Time timer2 = clock2.getElapsedTime();
+            float time2 = timer2.asSeconds();
+        
+            for(int i=0; i<recAmount; i++){
+                rec[i].setFillColor(sf::Color(0,0,0,255*expOutEase(time2,0.01f*i)));
+            }
+        }    
     }
 }
