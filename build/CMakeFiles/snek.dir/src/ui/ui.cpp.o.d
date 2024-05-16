@@ -249,5 +249,6 @@ CMakeFiles/snek.dir/src/ui/ui.cpp.o: \
  /usr/include/c++/14/tr1/modified_bessel_func.tcc \
  /usr/include/c++/14/tr1/poly_hermite.tcc \
  /usr/include/c++/14/tr1/poly_laguerre.tcc \
- /usr/include/c++/14/tr1/riemann_zeta.tcc /usr/include/c++/14/iostream \
- /usr/include/c++/14/istream /usr/include/c++/14/bits/istream.tcc
+ /usr/include/c++/14/tr1/riemann_zeta.tcc /usr/include/c++/14/numbers \
+ /usr/include/c++/14/iostream /usr/include/c++/14/istream \
+ /usr/include/c++/14/bits/istream.tcc

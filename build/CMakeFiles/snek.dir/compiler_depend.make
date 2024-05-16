@@ -865,6 +865,7 @@ CMakeFiles/snek.dir/src/ui/ui.cpp.o: /home/alias/Documents/GitHub/Projekt_Zalicz
   /usr/include/c++/14/locale \
   /usr/include/c++/14/map \
   /usr/include/c++/14/new \
+  /usr/include/c++/14/numbers \
   /usr/include/c++/14/ostream \
   /usr/include/c++/14/pstl/execution_defs.h \
   /usr/include/c++/14/pstl/glue_algorithm_defs.h \
@@ -1427,6 +1428,8 @@ _deps/sfml-src/include/SFML/System/String.hpp:
 /usr/include/sys/cdefs.h:
 
 /usr/include/sys/types.h:
+
+/usr/include/c++/14/numbers:
 
 /usr/include/bits/wctype-wchar.h:
 

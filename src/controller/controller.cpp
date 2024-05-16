@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 bool Controller::generateBoard(Board board) {
-    // implementacja
+    //mariusz
 }
 
 bool Controller::moveSnake(Board board, Snake snake) {
