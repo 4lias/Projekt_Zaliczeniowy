@@ -22,7 +22,7 @@ void UI::displayGame()
 {
     float speed = 0.5f;
     int screenDimensions[] = {1920, 1080};
-    int recAmount = 121;
+    int recAmount = 122;
 
     sf::RenderWindow window(sf::VideoMode(screenDimensions[0], screenDimensions[1]), "Snek", sf::Style::Default);
     sf::Clock clock;
@@ -32,22 +32,21 @@ void UI::displayGame()
     sf::Texture tex;
 
     std::vector<sf::RectangleShape> rec(recAmount);
-    int posX = screenDimensions[0]*0.5f, posY = screenDimensions[1]*0.5f, a=0;
+    int posX = screenDimensions[0]*0.5f, posY = screenDimensions[1]*0.5f, a=0, j=0, b=1;
     rec[0].setPosition(posX, posY);
     rec[0].setSize(sf::Vector2f(200, 200));
     rec[0].setFillColor(sf::Color(0,0,0,0));
     rec[0].setOrigin(100, 100);
             
-    for(int n=0; n<=11; n++)
+    for(int n=0; n<=21; n++)
     {
         int modN = n%2;
-        int j = n - modN;
+        j = j + modN-b;
 
         int dirX = round(cos(M_PI*0.5f*n));
         int dirY = round(sin(M_PI*0.5f*n));
     
-        for(int i=0; i<=n; i++)
-        {
+        for(int i=0; i<=j; i++) {
             a++;
             posX = posX + dirX*200;
             posY = posY + dirY*200;
@@ -57,6 +56,7 @@ void UI::displayGame()
             rec[a].setOrigin(100, 100);
             rec[a].setPosition(posX, posY);
         }
+        b=0;
     }
     
     if(!font.loadFromFile("../../assets/fonts/HelpMe.ttf")){}
