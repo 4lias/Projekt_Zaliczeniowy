@@ -1,8 +1,6 @@
 #include "controller/controller.h"
 
-int main(){
-    
+int main() {
     Controller controller;
-
-    controller.launch();
+    return controller.launch();
 }
