@@ -58,66 +58,6 @@ bool Board::moveSnake(Board& board, Snake& snake) {
     }
     return true;
 }
-//launch game board
-int Board::launch() {
-    Board board;
-    Snake snake;
-
-    if (!generate(board, snake)) {
-        return -1;
-    }
-    //create game window
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Snek Game");
-
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close(); //chceck if window were closed
-            }
-            if (event.type == sf::Event::KeyPressed) { //controls
-                switch (event.key.code) {
-                    case sf::Keyboard::Up:
-                        snake.setDirection(0, -1);
-                        break;
-                    case sf::Keyboard::Down:
-                        snake.setDirection(0, 1);
-                        break;
-                    case sf::Keyboard::Left:
-                        snake.setDirection(-1, 0);
-                        break;
-                    case sf::Keyboard::Right:
-                        snake.setDirection(1, 0);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        window.clear(sf::Color::Black); //clear window and make it black
-        sf::RectangleShape rectangle(sf::Vector2f(40, 40)); //create rectangle size 40x40
-        for (int i = 0; i < board.getDimensions()[1]; ++i) {
-            for (int j = 0; j < board.getDimensions()[0]; ++j) {
-                if (board.getBoard_Cells()[i * board.getDimensions()[0] + j] == 1) {
-                    rectangle.setFillColor(sf::Color::Black);
-                    rectangle.setPosition(j * 40, i * 40);
-                    window.draw(rectangle);
-                }
-            }
-        }
-        //draw snake and make it green
-        for (auto segment : snake.getBody()) {
-            rectangle.setFillColor(sf::Color::Green);
-            rectangle.setPosition(segment.first * 40, segment.second * 40);
-            window.draw(rectangle);
-        }
-
-        window.display();
-    }
-
-    return 0;
-}
 
 //remove food from specified cell on coordinations x and y
 void Board::removeFood(int x, int y) {
