@@ -1,52 +1,37 @@
 #include "snake.h"
 
-Snake::Snake() {
-    points = 0;
-    level = 1;
-    speed = 0.1f;
-    length = 1;
-    body.push_back({10, 10});
-    direction = {1, 0};
+int Snake::getLength() {
+    // implementacja
+    return 0;
 }
 
-std::vector<std::pair<int, int>> Snake::getBody() {
-    return body;
+float Snake::getSpeed() {
+    // implementacja
+    return 0;
 }
 
-std::pair<int, int> Snake::getHead() {
-    return body.front();
+int Snake::getLevel() {
+    // implementacja
+    return 0;
 }
 
-void Snake::setDirection(int dx, int dy) {
-    direction = {dx, dy};
+int Snake::getPoints() {
+    // implementacja
+    return 0;
 }
 
-void Snake::move() {
-    auto head = body.front();
-    head.first += direction.first;
-    head.second += direction.second;
-    body.insert(body.begin(), head);
-    if (growNext) {
-        growNext = false;
-    } else {
-        body.pop_back();
-    }
+void Snake::setSpeed(float speed) {
+    // implementacja
 }
 
-void Snake::grow() {
-    growNext = true;
+void Snake::addLength(int length) {
+    // implementacja
 }
 
-bool Snake::checkSelfCollision() {
-    auto head = body.front();
-    for (size_t i = 1; i < body.size(); ++i) {
-        if (body[i] == head) {
-            return true;
-        }
-    }
-    return false;
+void Snake::addLevel(int level) {
+    // implementacja
 }
 
 void Snake::addPoints(int points) {
-    score += points;
+    // implementacja
 }
