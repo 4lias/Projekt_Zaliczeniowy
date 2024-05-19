@@ -4,16 +4,21 @@
 #include <vector>
 #include <string>
 
-class Board {
-private:
-    int dimensions[2];
-    std::vector<int> board_cells;
-    std::string board_cells_type;
+class Snake;
 
+class Board {
 public:
-    int* getDimensions();
-    std::vector<int> getBoard_Cells();
-    std::string getBoard_Cells_Type();
+    std::vector<int>& getBoard_Cells();
+    std::vector<int>& getDimensions();
+    void placeFood();
+    bool checkCollision(int x, int y);
+    bool generate(Board& board, Snake& snake);
+    bool moveSnake(Board& board, Snake& snake);
+    int launch();
+    void removeFood(int x, int y);
+private:
+    std::vector<int> board_cells;
+    std::vector<int> dimensions = {0, 0};
 };
 
-#endif // BOARD_H //chuj
+#endif // BOARD_H
