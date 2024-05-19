@@ -114,6 +114,7 @@ void UI::displayGame()
 
         text2.setFillColor(sf::Color(0,0,0,255*sinInOutEase(time*3)));
 
+        // game start event
         if(event.type == sf::Event::KeyPressed)
         {
             if(event.key.scancode == sf::Keyboard::Scan::Enter){
