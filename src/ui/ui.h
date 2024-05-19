@@ -3,11 +3,13 @@
 
 class UI {
 public:
+    void displayStartScreen();
     void displayGame();
-    float expOutEase(float t, float b = 0, float c = 1, float d = 1);
-    float sinInOutEase(float t);
+
+    float easeExpIn(float time, float delay);
+    float easeSinInOut(float time);
 private:
-    int screenDimensions[2] = {800, 800};
+    int screenDimensions[2] = {1920, 1080};
     float speed = 1.0f;
 };
 
