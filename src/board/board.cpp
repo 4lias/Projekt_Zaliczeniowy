@@ -21,6 +21,7 @@ void Board::placeFood() {
         x = rand() % dimensions[0]; //random x coordinate
         y = rand() % dimensions[1]; //random y coordinate
     } while (board_cells[y * dimensions[0] + x] != 0); //ensure cell is empty
+    
     board_cells[y * dimensions[0] + x] = 1; //place food
 }
 

@@ -18,9 +18,9 @@ private:
 public:
     Snake();
     int getLength();
-    float getSpeed();
-    int getLevel();
-    int getPoints();
+    float getSpeed() const;
+    int getLevel() const;
+    int getPoints() const;
     void setSpeed(float speed);
     void addLength(int length);
     void addLevel(int level);

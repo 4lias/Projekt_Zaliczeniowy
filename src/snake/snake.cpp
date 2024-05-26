@@ -1,4 +1,5 @@
 #include "snake.h"
+#include <iostream>
 
 Snake::Snake() {
     points = 0;
@@ -55,15 +56,15 @@ int Snake::getLength() {
     return length;
 }
 
-float Snake::getSpeed() {
+float Snake::getSpeed() const{
     return speed;
 }
 
-int Snake::getLevel() {
+int Snake::getLevel() const{
     return level;
 }
 
-int Snake::getPoints() {
+int Snake::getPoints() const{
     return points;
 }
 

@@ -1,7 +1,8 @@
 #include "ui.h"
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include <cmath>
 #include <vector>
+#include <iostream>
 
 float UI::easeExpIn(float time, float delay = 0)
 {
@@ -18,7 +19,7 @@ float UI::easeSinInOut(float time)
     return sinf(time)*0.5f + 0.5f;
 }
 
-void UI::displayStartScreen()
+bool UI::displayStartScreen()
 {
     float speed = 0.5f;
     int screenDimensions[] = {1920, 1080};
@@ -82,7 +83,7 @@ void UI::displayStartScreen()
 
     sf::Sprite sprite;
     sprite.setTexture(tex);
-    sprite.setOrigin(sprite.getLocalBounds().width/2, sprite.getLocalBounds().height/2);
+    sprite.setOrigin(sprite.getLocalBounds().width*0.5f, sprite.getLocalBounds().height*0.5f);
     sprite.setPosition(-200, 0);
 
     //Update
@@ -120,6 +121,7 @@ void UI::displayStartScreen()
             if(event.key.scancode == sf::Keyboard::Scan::Enter){
                 clock2.restart();
                 isTriggered = true;
+                
             }
         }
 
@@ -131,27 +133,18 @@ void UI::displayStartScreen()
             for(int i=0; i<recAmount; i++){
                 rec[i].setFillColor(sf::Color(0,0,0,255*easeExpIn(time2,0.01f*i)));
             }
+
+            if(time2 >= 2.0f){
+                return true;
+            }
         }    
     }
+    return false;
 }
 
-void UI::displayGame() {
+void UI::displayGame() 
+{
     sf::RenderWindow window(sf::VideoMode(screenDimensions[0], screenDimensions[1]), "Snek", sf::Style::Default);
-<<<<<<< Updated upstream
-=======
-    sf::Clock clock;
-    sf::Font font;
-    sf::Font font2;
-
-    const int recAmount = 10;
-    std::vector<sf::RectangleShape> rec(recAmount);
-
-    rec[0].setSize(sf::Vector2f(200, 200));
-    rec[0].setFillColor(sf::Color(0, 0, 0, 0));
-
-    if (!font.loadFromFile("../../assets/fonts/HelpMe.ttf")) {}
-    if (!font2.loadFromFile("../../assets/fonts/IHATCS__.TTF")) {}
->>>>>>> Stashed changes
 
     while (window.isOpen()) {
         sf::Event event;
@@ -161,11 +154,82 @@ void UI::displayGame() {
             }
         }
 
-<<<<<<< Updated upstream
         window.clear(sf::Color(0,0,0));
 
-=======
->>>>>>> Stashed changes
         window.display();
     }
+}
+
+void UI::displayGameOver()
+{
+    sf::RenderWindow window(sf::VideoMode(screenDimensions[0], screenDimensions[1]), "Snek", sf::Style::Default);
+    sf::Font font;
+    
+    if(!font.loadFromFile("../../assets/fonts/HelpMe.ttf")){}
+    sf::Text text;
+    text.setFont(font);
+    text.setString("Game Over");
+    text.setCharacterSize(100);
+    text.setFillColor(sf::Color::White);
+    text.setOrigin(text.getLocalBounds().width*0.5f, text.getLocalBounds().height*0.5f);
+    text.setPosition(screenDimensions[0]*0.5f, screenDimensions[1]*0.5f);
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        window.clear(sf::Color(0,0,0));
+
+        window.draw(text);
+
+        window.display();
+    }
+}
+
+void UI::drawBoard(sf::RenderWindow &window, Board board, sf::RectangleShape rectangle)
+{
+    for (int i = 0; i < board.getDimensions()[1]; ++i) 
+    {
+        for (int j = 0; j < board.getDimensions()[0]; ++j) 
+        {
+            if (board.getBoard_Cells()[i * board.getDimensions()[0] + j] == 1) 
+            {
+                rectangle.setFillColor(sf::Color::Red);
+                rectangle.setPosition(j * 40, i * 40);
+                window.draw(rectangle);
+            }
+        }
+    }
+}
+
+void UI::drawSnake(sf::RenderWindow& window, Snake snake, sf::RectangleShape &rectangle)
+{
+    for (auto segment : snake.getBody()) {
+            rectangle.setFillColor(sf::Color::Green);
+            rectangle.setPosition(segment.first * 40, segment.second * 40);
+            window.draw(rectangle);
+        }
+}
+
+void UI::displayScore(sf::RenderWindow& window, Snake snake)
+{   
+    std::string textScore;
+    textScore = "Score: " + std::to_string(snake.getPoints()); 
+
+    sf::Font font;
+    if(!font.loadFromFile("../../assets/fonts/IHATCS__.TTF")){}
+
+    sf::Text score;
+    score.setFont(font);
+    score.setString(textScore);
+    score.setFillColor(sf::Color::White);
+    score.setCharacterSize(50);
+
+    //std::cout << snake.getPoints() << " ";
+
+    window.draw(score);
 }

@@ -1,10 +1,15 @@
 #include "controller.h"
+#include "../ui/ui.h"
 #include <SFML/Graphics.hpp>
 
 int Controller::launch() {
+    
     Board board;
     Snake snake;
+    UI ui;
     bool startGame = false;
+
+    ui.displayStartScreen();
 
     if (!board.generate(board, snake)) {
         return -1;
@@ -45,33 +50,30 @@ int Controller::launch() {
         float time = clock.getElapsedTime().asSeconds();
         clock.restart();
         timer += time;
-    //update snake position if game has started and delay passed
+        
+        //update snake position if game has started and delay passed
         if (startGame && timer > delay) {
             timer = 0;
-            //close window if move fails
+            // game over state
             if (!board.moveSnake(board, snake)) {
                 window.close();
+                ui.displayGameOver();
             }
         }
+        
         //clear window
         window.clear(sf::Color::Black);
+
         //set black background creating rectangles 40x40
         sf::RectangleShape rectangle(sf::Vector2f(40, 40));
-        for (int i = 0; i < board.getDimensions()[1]; ++i) {
-            for (int j = 0; j < board.getDimensions()[0]; ++j) {
-                if (board.getBoard_Cells()[i * board.getDimensions()[0] + j] == 1) {
-                    rectangle.setFillColor(sf::Color::Red);
-                    rectangle.setPosition(j * 40, i * 40);
-                    window.draw(rectangle);
-                }
-            }
-        }
-        //draw green snake
-        for (auto segment : snake.getBody()) {
-            rectangle.setFillColor(sf::Color::Green);
-            rectangle.setPosition(segment.first * 40, segment.second * 40);
-            window.draw(rectangle);
-        }
+
+        ui.drawBoard(window, board, rectangle);
+
+        //draw snake
+        ui.drawSnake(window, snake, rectangle);
+        
+        //display score
+        ui.displayScore(window, snake);
 
         window.display();
     }

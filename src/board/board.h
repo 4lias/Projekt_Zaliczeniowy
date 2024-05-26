@@ -10,11 +10,14 @@ class Board {
 public:
     std::vector<int>& getBoard_Cells();
     std::vector<int>& getDimensions();
+
     void placeFood();
+    void placeObsticles();
+
     bool checkCollision(int x, int y);
     bool generate(Board& board, Snake& snake);
     bool moveSnake(Board& board, Snake& snake);
-    int launch();
+    //int launch();
     void removeFood(int x, int y);
 private:
     std::vector<int> board_cells;
