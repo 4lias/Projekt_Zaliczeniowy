@@ -1,53 +1,55 @@
 #include "snake.h"
-#include <iostream>
 
+//constructor snake
 Snake::Snake() {
     points = 0;
     level = 1;
     speed = 0.1f;
     length = 1;
-    body.push_back({10, 10});
-    direction = {1, 0};
+    body.push_back({10, 10});// Initialize the snake's starting position
+    //direction = {1, 0};
 }
-
+//get snake body as vector of coordinates
 std::vector<std::pair<int, int>> Snake::getBody() {
     return body;
 }
-
+//get coordinates of snake's head
 std::pair<int, int> Snake::getHead() {
     return body.front();
 }
-
+//set set direction of snake movement
 void Snake::setDirection(int dx, int dy) {
     direction = {dx, dy};
 }
-
+//move snake in direction
 void Snake::move() {
-    auto head = body.front();
-    head.first += direction.first;
-    head.second += direction.second;
-    body.insert(body.begin(), head);
+    auto head = body.front();//get head posision
+    head.first += direction.first;//move head in x direction (horizontal)
+    head.second += direction.second; //move head in y direction (vertical)
+    body.insert(body.begin(), head);//insert new head position at beginning of body
     if (growNext) {
-        growNext = false;
+        growNext = false; //if snake should grow reset growNext
+        points +=1;//increment points, if snake should grow means player scored point
     } else {
-        body.pop_back();
+        body.pop_back(); //if not, remove last segment of snakes body
     }
 }
-
+//set flat to grow snake on next move
 void Snake::grow() {
     growNext = true;
 }
 
+//check if snake has collided with itself
 bool Snake::checkSelfCollision() {
-    auto head = body.front();
-    for (size_t i = 1; i < body.size(); ++i) {
-        if (body[i] == head) {
-            return true;
+    auto head = body.front();//get head position
+    for (size_t i = 1; i < body.size(); ++i) { //iterate over body
+        if (body[i] == head) { //check if any segment collides with head
+            return true; //return true if collision detected
         }
     }
-    return false;
+    return false;//no collision
 }
-
+//ad points to snake's score
 void Snake::addPoints(int points) {
     score += points;
 }
