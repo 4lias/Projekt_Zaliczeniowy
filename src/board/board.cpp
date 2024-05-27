@@ -1,5 +1,5 @@
 #include "board.h"
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "../snake/snake.h"
 #include <ctime>
 #include <cstdlib>

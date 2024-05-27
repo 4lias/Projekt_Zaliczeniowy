@@ -1,5 +1,4 @@
 #include "ui.h"
-//#include <SFML/Graphics.hpp>
 #include <cmath>
 #include <vector>
 #include <iostream>
@@ -160,7 +159,7 @@ void UI::displayGame()
     }
 }
 
-void UI::displayGameOver()
+void UI::displayGameOver(int points)
 {
     sf::RenderWindow window(sf::VideoMode(screenDimensions[0], screenDimensions[1]), "Snek", sf::Style::Default);
     sf::Font font;
@@ -173,7 +172,16 @@ void UI::displayGameOver()
     text.setFillColor(sf::Color::White);
     text.setOrigin(text.getLocalBounds().width*0.5f, text.getLocalBounds().height*0.5f);
     text.setPosition(screenDimensions[0]*0.5f, screenDimensions[1]*0.5f);
-
+    //score
+    std::string textScore = "Score: " + std::to_string(points);
+    sf::Text score;
+    score.setFont(font);
+    score.setString(textScore);
+    score.setCharacterSize(50);
+    score.setFillColor(sf::Color::White);
+    score.setOrigin(score.getLocalBounds().width * 0.5f, score.getLocalBounds().height * 0.5f);
+    score.setPosition(screenDimensions[0] * 0.5f, screenDimensions[1] * 0.5f + 100);
+    //end score
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -185,10 +193,12 @@ void UI::displayGameOver()
         window.clear(sf::Color(0,0,0));
 
         window.draw(text);
+        window.draw(score);
 
         window.display();
     }
 }
+
 
 void UI::drawBoard(sf::RenderWindow &window, Board board, sf::RectangleShape rectangle)
 {
@@ -228,8 +238,6 @@ void UI::displayScore(sf::RenderWindow& window, Snake snake)
     score.setString(textScore);
     score.setFillColor(sf::Color::White);
     score.setCharacterSize(50);
-
-    //std::cout << snake.getPoints() << " ";
 
     window.draw(score);
 }

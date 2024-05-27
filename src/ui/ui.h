@@ -9,7 +9,7 @@ class UI {
 public:
     bool displayStartScreen();
     void displayGame();
-    void displayGameOver();
+    void displayGameOver(int points);
 
     void displayScore(sf::RenderWindow& window, Snake snake);
     void drawBoard(sf::RenderWindow &window, Board board, sf::RectangleShape rectangle);

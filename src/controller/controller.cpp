@@ -57,7 +57,8 @@ int Controller::launch() {
             // game over state
             if (!board.moveSnake(board, snake)) {
                 window.close();
-                ui.displayGameOver();
+                int points = snake.getPoints();
+                ui.displayGameOver(points); // Pass points to displayGameOver
             }
         }
         
